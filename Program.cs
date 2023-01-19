@@ -15,6 +15,7 @@ namespace FundamentosCSHARP
         {
             //hola  2
             Console.WriteLine("Hola");
+            int hola = 5;
 
         }
     }
