@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Linq;
 using FundamentosCSCHARP.Service;
+using FundamentosCSCHARP.Errors;
 
 namespace FundamentosCSHARP
 {
@@ -13,10 +14,28 @@ namespace FundamentosCSHARP
     {
         static async Task Main(string[] args)
         {
-            //hola  2
-            Console.WriteLine("Hola");
-            int hola = 5;
-
+            try
+            {
+                var searcherBeer = new SearcherBeer();
+                var cantidad = searcherBeer.GetCantidad("hahaha");
+                Console.WriteLine("Todo bien");
+            }
+            catch (FieldAccessException ex)
+            {
+                Console.WriteLine("Si te he cachado");
+            }
+            catch (BeerNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Esto siempre se ejecuta");
+            }
         }
     }
 }
